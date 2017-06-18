@@ -41,6 +41,7 @@ class Inventory(Subject, metaclass=Singleton):
             if p['nome'] == nome:
                 encontrados.append(p)
         self.notificar_observer(encontrados)
+        return encontrados
 
     def remover_produto(self, nome_produto):
         for p in self.produtos:

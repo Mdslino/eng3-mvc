@@ -10,3 +10,6 @@ class Employee:
 
     def modificar(self, nome_produto, *args, **kwargs):
         raise NotImplementedError()
+
+    def vender(self, nome_produto, quantidade):
+        raise NotImplementedError()

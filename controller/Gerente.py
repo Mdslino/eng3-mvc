@@ -11,7 +11,7 @@ class Gerente(Employee):
         return self.__model
 
     def buscar(self, nome):
-        return self.__model.procurar_produto(nome)
+        return self.model.procurar_produto(nome)
 
     def adicionar(self, nome, preco, quantidade):
         p = Produto(nome, preco, quantidade)
@@ -24,5 +24,10 @@ class Gerente(Employee):
         self.model.modificar_produto(nome_produto)
 
     def listar(self):
-        produtos = self.__model.produto
+        produtos = self.__model.produtos
         return produtos
+
+    def vender(self, nome_produto, quantidade):
+        q = self.buscar(nome_produto)
+        q = q[0]['quantidade'] - quantidade
+        self.model.modificar_produto(nome_produto, quantidade=q)
