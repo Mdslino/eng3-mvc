@@ -1,4 +1,3 @@
-from .Subject import Subject
 from .Produto import Produto
 
 
@@ -12,9 +11,8 @@ class Singleton(type):
         return cls.__instance[cls]
 
 
-class Inventory(Subject, metaclass=Singleton):
+class Inventory(metaclass=Singleton):
     def __init__(self):
-        Subject.__init__(self)
         self.__produtos = []
 
     @property
@@ -27,7 +25,7 @@ class Inventory(Subject, metaclass=Singleton):
 
     def adicionar_produto(self, produto):
         if isinstance(produto, Produto):
-            self.__produtos.append({
+            self.produtos.append({
                 'nome': produto.nome,
                 'preco': produto.preco,
                 'quantidade': produto.quantidade
@@ -40,25 +38,20 @@ class Inventory(Subject, metaclass=Singleton):
         for p in self.produtos:
             if p['nome'] == nome:
                 encontrados.append(p)
-        self.notificar_observer(encontrados)
         return encontrados
 
     def remover_produto(self, nome_produto):
         for p in self.produtos:
             if p['nome'] == nome_produto:
-                self.__produtos.pop(p)
+                self.produtos.remove(p)
 
     def modificar_produto(self, nome_produto, **kwargs):
-        options = {
-            'preco': None,
-            'quantidade': None
-        }
-        options.update(kwargs)
-        if kwargs['preco']:
-            for i in self.produtos:
-                if i['nome'] == nome_produto:
-                    i['preco'] = kwargs['preco']
-        elif kwargs['quantidade']:
-            for j in self.produtos:
-                if j['nome'] == nome_produto:
-                    j['quantidade'] = kwargs['quantidade']
+        print('Preço passado no parametro: {}'.format(kwargs.get('preco')))
+        print('Quantidade passado no parametro: {}'.format(kwargs.get('quantidade')))
+        for produto in self.produtos:
+            for value in produto.values():
+                if value == nome_produto:
+                    if kwargs.get('preco'):
+                        produto['preco'] = kwargs.get('preco')
+                    if kwargs.get('quantidade'):
+                        produto['quantidade'] = kwargs.get('quantidade')

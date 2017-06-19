@@ -12,24 +12,24 @@ class GerenteView:
     def gerente(self):
         return self.__gerente
 
-    def busca_produto(self):
+    def buscar_produto(self):
         table = PrettyTable(['Nome', 'Preço', 'Quantidade'])
         nome_produto = input("Digite o nome do produto: ")
         produtos = self.gerente.buscar(nome_produto)
         for produto in produtos:
             table.add_row(
                 [produto['nome'], produto['preco'], produto['quantidade']])
-        print(table)
+        print(table, end="\n\n")
 
     def adicionar_produto(self):
         nome = input("Digite o nome do produto: ")
         preco = float(input("Digite o valor do produto: "))
-        quantidade = int(input("Digite a quantidade do produto"))
+        quantidade = int(input("Digite a quantidade do produto: "))
         self.gerente.adicionar(nome, preco, quantidade)
-        print("{} adcionado com sucesso!!".format(nome))
+        print("{} adicionado com sucesso!!\n\n".format(nome))
 
     def deletar_produto(self):
-        nome = input("Digite o nome do produto")
+        nome = input("Digite o nome do produto: ")
         self.gerente.deletar(nome)
         print("{} deletado com sucesso!!".format(nome))
 
@@ -65,7 +65,7 @@ class GerenteView:
         for produto in produtos:
             table.add_row(
                 [produto['nome'], produto['preco'], produto['quantidade']])
-        print(table)
+        print(table, end="\n\n")
 
     def vender_produto(self):
         table = PrettyTable(['Nome', 'Preço', 'Quantidade'])
@@ -82,7 +82,7 @@ class GerenteView:
         for produto in produtos:
             table.add_row(
                 [produto['nome'], produto['preco'], produto['quantidade']])
-        print(table)
+        print(table, end="\n\n")
 
 
 class VendedorView:
@@ -93,7 +93,7 @@ class VendedorView:
     def vendedor(self):
         return self.__vendedor
 
-    def busca_produto(self):
+    def buscar_produto(self):
         table = PrettyTable(['Nome', 'Preço', 'Quantidade'])
         nome_produto = input("Digite o nome do produto: ")
         produtos = self.vendedor.buscar(nome_produto)

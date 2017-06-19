@@ -3,7 +3,7 @@ from .Employee import Employee
 
 class Vendedor(Employee):
     def __init__(self, model):
-        self.__model = model()
+        self.__model = model
 
     @property
     def model(self):
