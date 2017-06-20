@@ -5,6 +5,7 @@ from model.Produto import Produto
 inventory = Inventory()
 app = MainView()
 
+
 def popular_produtos():
     produtos = [
         Produto('Banana', 3.75, 25),
@@ -15,9 +16,11 @@ def popular_produtos():
     for produto in produtos:
         inventory.adicionar_produto(produto)
 
+
 def run():
     app.selecionar_funcionario()
     app.acoes()
+
 
 if __name__ == '__main__':
     popular_produtos()
